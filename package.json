@@ -1,0 +1,18 @@
+{
+  "name": "game-of-thrones-risk-web-app",
+  "version": "1.0.0",
+  "description": "Game of Thrones-themed adaptation of the board game Risk, designed by Alex Durkee and developed by Javier Cueto",
+  "main": "scripts/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/Buraburaite/RiskApp"
+  },
+  "author": "Javier Cueto",
+  "license": "None",
+  "homepage": "github.com/Buraburaite/RiskApp#readme",
+  "devDependencies": {
+  }
+}
