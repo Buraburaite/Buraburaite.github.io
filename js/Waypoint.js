@@ -11,19 +11,14 @@ function Waypoint(percentageArr, waypointType, waypointName = parseString(positi
   const god = GAME.god;
   const mapEl = GAME.map;
   const players = GAME.players;
-  const mapX  = () => mapEl.width();
-  const mapY  = () => mapEl.height();
-
-  const calcX = () => percentPosition[0] / 100 * mapX();
-  const calcY = () => percentPosition[1] / 100 * mapY();
 
   let domEl = $('<span/>')
   .addClass('waypoint')
   .addClass(banner)
   .attr('id', name)
   .html(armyCount)
-  .css('left',   calcX() + 'px')
-  .css('bottom', calcY() + 'px');
+  .css('left',   percentPosition[0] + '%')
+  .css('bottom', percentPosition[1] + '%');
   mapEl.append(domEl);
 
   function getArmies() { //not really good enough, could get out of sync

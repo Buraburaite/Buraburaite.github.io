@@ -13,6 +13,8 @@
   "author": "Javier Cueto",
   "license": "None",
   "homepage": "github.com/Buraburaite/RiskApp#readme",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
+    "simplehttpserver": "0.0.6"
   }
 }

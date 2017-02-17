@@ -6,7 +6,7 @@ function Game() {
     god : $({}),
     latestArmyQuery : null,
     queryArmies : null,
-    map : $('.map'),
+    map : $('.map-container'),
     moveArmies: null,
     orders : null,
     players : [],

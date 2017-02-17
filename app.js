@@ -2,26 +2,19 @@
 let GAME = {};
 Game();
 
-let counter = 0;
+function loadSounds () {
+  ion.sound({
+    sounds: [{name: "ambience"}, {name: 'tap'}],
 
-let testBtn = $('#test-btn');
-testBtn.click(() => {
-  counter++;
-  if (counter === 1) {
-    GAME.moveArmies(0,1);
-  }
-  else if (counter === 2) {
-    GAME.moveArmies(3,2);
-  }
-  else if (counter === 3) {
-    GAME.moveArmies(1,2);
-  }
-  else if (counter === 4) {
-    GAME.fight();
-  }
-});
+    path: "./lib/ion.sound-3.0.7/sounds/",
+    preload: true,
+    volume: 0.1
+  });
+}
 
 
 $(document).ready(() => {
   GAME.startGame();
+  loadSounds();
+  ion.sound.play('ambience');
 });

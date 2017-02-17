@@ -83,7 +83,7 @@ function Army(commandingPlayer, startWaypoint) {
     if (armies.length > 0) {
       waypoint.banner = 'neutral';
       newWaypoint.banner = 'conflict';
-      img.style.left = +newWaypoint.x.replace('px','') - 110 + 'px';
+      img.style.left = +newWaypoint.x.replace('px','') - 100 + 'px';
       img.style.bottom = newWaypoint.y;
     }
     else {
