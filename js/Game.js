@@ -8,8 +8,9 @@ function Game() {
     latestArmyQuery : null,
     queryArmies : null,
     map : $('.map-container'),
-    moveArmies: null,
+    marchArmies: null,
     orders : null,
+    placeOrders: placeOrders,
     players : [],
     turn : null,
     updateWorld : null,
@@ -27,6 +28,52 @@ function Game() {
   const world = World();
   const waypoints = GAME.waypoints;
 
+  function placeOrders(orders) {
+
+    let sections = orders.split(',');
+    sections = sections.map((sec) => sec.trim() );
+
+    let origin, destination, battlefield, success = false;
+
+    //Placement
+    if (sections[0] === 'Place') {
+      if (sections[1]) {
+        destination = waypoints.find((wp) => wp.name === sections[1]);
+        if (destination) {
+          success = true;
+          placeArmies(GAME.currentPlayer.name, destination.name);
+        }
+      }
+    }
+    //Marching
+    if (sections[0] === 'March') {
+      if (sections[1] && sections[2]) {
+        origin      = waypoints.find((wp) => wp.name === sections[1]);
+        destination = waypoints.find((wp) => wp.name === sections[2]);
+        if (origin && destination) {
+          success = true;
+          marchArmies(origin.name, destination.name);
+        }
+      }
+    }
+    //Fight
+    if (sections[0] === 'Fight') {
+      if (sections[1]) {
+        battlefield = waypoints.find((wp) => wp.name === sections[1]);
+        if (battlefield) {
+          success = true;
+          fight(battlefield.name);
+        }
+      }
+    }
+
+    // let player      = players.find(  (p)  => p.name  === playerName);
+    // let destination = waypoints.find((wp) => wp.name === destinationName);
+    console.log(sections);
+
+    return success;
+  }
+
   function startGame() {
 
 
@@ -34,6 +81,7 @@ function Game() {
     // promptForPlayers();
     players.push(Player('Durkee', 1, 'Baratheon'));
     players.push(Player('Javi', 2, 'Targaryen'));
+    GAME.currentPlayer = players[1];
 
     placeArmies('Durkee', 'King\'s Landing');
     placeArmies('Javi', 'Valyria');
@@ -49,9 +97,9 @@ function Game() {
   }
   GAME.placeArmies = placeArmies;
 
-  function fight(battlefield) {
+  function fight(battlefieldName) {
     let query = queryArmies();
-    let armies = query[battlefield];
+    let armies = query[battlefieldName];
 
     commanders = [];
     armies.forEach((army) => {
@@ -109,7 +157,7 @@ function Game() {
   }
   GAME.queryArmies = queryArmies;
 
-  function moveArmies(originName, destinationName) {
+  function marchArmies(originName, destinationName) {
     let player = players[0];
     let origin = waypoints.find((wp) => wp.name === originName);
     let destination = waypoints.find((wp) => wp.name === destinationName);
@@ -120,7 +168,7 @@ function Game() {
     });
     updateWorld();
   }
-  GAME.moveArmies = moveArmies;
+  GAME.marchArmies = marchArmies;
 
   function updateWorld() { god.trigger('worldUpdate', queryArmies()); }
   GAME.updateWorld = updateWorld;

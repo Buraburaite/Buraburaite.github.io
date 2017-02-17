@@ -8,11 +8,21 @@
   -ms-border-radius: 6px;
   border-radius: 6px;
 }
-@mixin waypointBorder($px, $style, $color) {
+@mixin border($px, $style, $color) {
   -webkit-border: $px $style $color;
   -moz-border: $px $style $color;
   -ms-border:$px $style $color;
   border: $px $style $color;
+}
+@mixin roundBorder($px, $style, $color, $radius) {
+  -webkit-border: $px $style $color;
+  -moz-border: $px $style $color;
+  -ms-border:$px $style $color;
+  border: $px $style $color;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
 }
 body {
   width: 100%;
@@ -25,7 +35,7 @@ body {
   height: 600px;
 
   position: absolute;
-  top: 50%;
+  top: 47%;
   left: 50%;
 
   margin: -300px 0 0 -450px;
@@ -82,25 +92,25 @@ body {
   .neutral {
     color: black;
     background-color: white;
-    @include waypointBorder(2px, solid, black);
+    @include border(2px, solid, black);
   }
 
   .conflict {
     color: black;
     background-color: orange;
-    @include waypointBorder(2px, solid, red);
+    @include border(2px, solid, red);
   }
 
   .targaryen {
     color: white;
     background-color: red;
-    @include waypointBorder(4px, solid, black);
+    @include border(4px, solid, black);
   }
 
   .baratheon {
     color: black;
     background-color: yellow;
-    @include waypointBorder(4px, solid, black);
+    @include border(4px, solid, black);
   }
 
   .win-div {
@@ -148,4 +158,28 @@ body {
 
     }
   }
+}
+.input-box {
+  width: 85%;
+  height: 30px;
+  background: white;
+  position: absolute;
+  top: 101%;
+  z-index: 100;
+  text-align: center;
+  outline: none;
+}
+.input-btn {
+  width: auto;
+  height: 4%;
+  position: absolute;
+  top: 101.5%;
+  left: 87%;
+  color: white;
+  background-color: green;
+  background-repeat: no-repeat;
+  @include roundBorder(1px, solid, black, 2px);
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
 }
