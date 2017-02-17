@@ -1,6 +1,7 @@
 function Game() {
 
   GAME = { //Public variables
+    placeArmies : null,
     currentPlayer : null,
     fight : null,
     god : $({}),
@@ -34,16 +35,19 @@ function Game() {
     players.push(Player('Durkee', 1, 'Baratheon'));
     players.push(Player('Javi', 2, 'Targaryen'));
 
-    addArmy(players[0], waypoints.find((wp) => wp.name === 'King\'s Landing'));
-    addArmy(players[1], waypoints.find((wp) => wp.name === 'Valyria'));
+    placeArmies('Durkee', 'King\'s Landing');
+    placeArmies('Javi', 'Valyria');
 
   }
   GAME.startGame = startGame;
 
-  function addArmy(player, waypoint) {
-    Army(player, waypoint);
+  function placeArmies(playerName, destinationName, num = 1) {
+    let player      = players.find(  (p)  => p.name  === playerName);
+    let destination = waypoints.find((wp) => wp.name === destinationName);
+    _.times(num, Army(player, destination));
     updateWorld();
   }
+  GAME.placeArmies = placeArmies;
 
   function fight(battlefield) {
     let query = queryArmies();
@@ -55,7 +59,36 @@ function Game() {
     });
 
     let victor = _.sample(commanders);
-    console.log(victor.name + ' of House ' + victor.house + ' has won the Game of Thrones!');
+
+    //Specify winner in message
+    $('#bottom-win-msg')
+    .html('House ' + victor.house + '!');
+    $('.win-banner')
+    .attr('src', 'Assets/Factions/House ' + victor.house + '.png');
+
+    //Animate the banner
+    let winBanner = $('.win-div');
+
+    winBanner
+    .css('display', 'block')
+    .css('opacity', '0');
+
+    let counter = 0;
+    let accel   = 0;
+    let increaseOpacity = () => {
+      if (counter < 1) {
+        accel   += 0.01;
+        if (accel > 0.8) {
+          accel = 0.8;
+        }
+        counter += accel;
+        winBanner.css('opacity', counter.toString());
+      }
+      else {
+        clearInterval(interval);
+      }
+    };
+    let interval = setInterval(increaseOpacity, 100);
   }
   GAME.fight = fight;
 
@@ -76,11 +109,15 @@ function Game() {
   }
   GAME.queryArmies = queryArmies;
 
-  function moveArmies(originNum, targetNum) {
-    player = players[0];
-    origin = waypoints[originNum];
+  function moveArmies(originName, destinationName) {
+    let player = players[0];
+    let origin = waypoints.find((wp) => wp.name === originName);
+    let destination = waypoints.find((wp) => wp.name === destinationName);
+
     let query = queryArmies(player, origin);
-    query[waypoints[originNum].name].forEach((army) => { army.moveTo(waypoints[targetNum]); });
+    query[origin.name].forEach((army) => {
+      army.moveTo(destination);
+    });
     updateWorld();
   }
   GAME.moveArmies = moveArmies;

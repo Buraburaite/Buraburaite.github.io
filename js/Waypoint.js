@@ -59,9 +59,9 @@ function Waypoint(percentageArr, waypointType, waypointName = parseString(positi
 
     get banner() { return banner;   },
     set banner(newBanner) {
-      domEl.removeClass(banner);
+      domEl.removeClass(banner.toLowerCase());
       domEl.addClass(newBanner.toLowerCase());
-      tooltip.removeClass(banner);
+      tooltip.removeClass(banner.toLowerCase());
       tooltip.addClass(newBanner.toLowerCase());
       tooltip.html('<em>' + name + '</em><br>' + 'Banner: ' + newBanner);
       banner = newBanner;

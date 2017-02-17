@@ -87,7 +87,7 @@ function Army(commandingPlayer, startWaypoint) {
       img.style.bottom = newWaypoint.y;
     }
     else {
-      waypoint.banner = 'neutral';
+      waypoint.banner = 'Neutral';
       newWaypoint.banner = player.house;
       img.style.left = +newWaypoint.x.replace('px','') + 20 + 'px';
       img.style.bottom = newWaypoint.y;
