@@ -4,7 +4,7 @@ function Waypoint(percentageArr, waypointType, waypointName = parseString(positi
   let type = waypointType;
   let name = waypointName;
   let residingPlayer = null;
-  let banner = 'neutral';
+  let banner = 'Neutral';
   // let armies; eventually, we want a variable like to auto-refresh
 
   let armyCount = 0;
@@ -14,12 +14,21 @@ function Waypoint(percentageArr, waypointType, waypointName = parseString(positi
 
   let domEl = $('<span/>')
   .addClass('waypoint')
-  .addClass(banner)
+  .addClass('neutral')
   .attr('id', name)
   .html(armyCount)
   .css('left',   percentPosition[0] + '%')
   .css('bottom', percentPosition[1] + '%');
   mapEl.append(domEl);
+
+  let tooltip = $('<span/>')
+  .addClass('myTooltip')
+  .addClass('neutral')
+  .attr('id', name + '-myTooltip')
+  .html('<em>' + name + '</em><br>' + 'Banner: ' + banner)
+  .css('left',   percentPosition[0] - 5 + '%')
+  .css('bottom', percentPosition[1] + 8 + '%');
+  mapEl.append(tooltip);
 
   function getArmies() { //not really good enough, could get out of sync
     return GAME.latestArmyQuery[name];
@@ -51,7 +60,10 @@ function Waypoint(percentageArr, waypointType, waypointName = parseString(positi
     get banner() { return banner;   },
     set banner(newBanner) {
       domEl.removeClass(banner);
-      domEl.addClass(newBanner);
+      domEl.addClass(newBanner.toLowerCase());
+      tooltip.removeClass(banner);
+      tooltip.addClass(newBanner.toLowerCase());
+      tooltip.html('<em>' + name + '</em><br>' + 'Banner: ' + newBanner);
       banner = newBanner;
     },
   };

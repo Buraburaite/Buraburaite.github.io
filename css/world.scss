@@ -1,5 +1,5 @@
 @mixin mapBorder() {
-  -webkit-border: 4px solid ;
+  -webkit-border: 4px solid black;
   -moz-border: 4px solid black;
   -ms-border: 4px solid black;
   border: 4px solid red;
@@ -53,6 +53,30 @@ body {
     text-align: center;
     font-weight: bold;
 
+    &:hover + .myTooltip {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 1s, visibility 1s;
+    }
+
+  }
+
+  .myTooltip {
+    width: auto;
+    height: auto;
+    padding: 4px;
+    position: absolute;
+    z-index: 3;
+    left: 0%;
+    bottom: 0%;
+    text-align: center;
+    font-weight: bold;
+    @include mapBorder();
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 2s, visibility 1s;
+    transition-delay: 0.1s;
+
   }
 
   .neutral {
@@ -67,7 +91,7 @@ body {
     @include waypointBorder(2px, solid, red);
   }
 
-  .targaeryn {
+  .targaryen {
     color: white;
     background-color: red;
     @include waypointBorder(4px, solid, black);
@@ -77,5 +101,51 @@ body {
     color: black;
     background-color: yellow;
     @include waypointBorder(4px, solid, black);
+  }
+
+  .win-div {
+    display: none;
+    width: 30%;
+    height: auto;
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    padding: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0px solid black;
+    border-radius: 10px;
+    background: rgba(250,250,250,0.5);
+
+    .win-msg {
+      background: black;
+      color: white;
+      font: arial;
+      text-align: center;
+      font-family: copperplate;
+      border: 1px solid black;
+      border-radius: 4px;
+
+    }
+    #top-win-msg {
+      font-size: 2vw;
+
+    }
+
+    #bottom-win-msg {
+      font-size: 4.5vw;
+
+    }
+
+    .win-banner {
+      width: 100%;
+      height: auto;
+      position: relative;
+      z-index: 10;
+      bottom: 6px;
+
+    }
   }
 }

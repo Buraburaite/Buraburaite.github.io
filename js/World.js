@@ -4,19 +4,22 @@ function World() {
   const map       = GAME.map;
   const waypoints = GAME.waypoints;
 
-  // waypoints.push(Waypoint([250,400], $('#Tengoku'), 'Landmark', 'Tengoku'));
-  // waypoints.push(Waypoint([400,325], $('#Eudaimonia'), 'Landmark', 'Eudaimonia'));
-  // waypoints.push(Waypoint([400,175], $('#Circumstancia'), 'Landmark', 'Circumstancia'));
-  // waypoints.push(Waypoint([250,100], $('#Oblivion'), 'Landmark', 'Oblivion'));
-  // waypoints.push(Waypoint([100,175], $('#Samsara'), 'Landmark', 'Samsara'));
-  // waypoints.push(Waypoint([100,325], $('#Nirvana'), 'Landmark', 'Nirvana'));
-
-  addWaypoint(50, 50, 'Landmark', 'Tengoku');
-  addWaypoint(80, 60, 'Landmark', 'Eudaimonia');
-  addWaypoint(70, 35, 'Landmark', 'Circumstancia');
-  addWaypoint(57, 20, 'Landmark', 'Oblivion');
-  addWaypoint(20, 35, 'Landmark', 'Samsara');
-  addWaypoint(21, 81, 'Landmark', 'Nirvana');
+  addWaypoint(38, 41, 'Landmark', 'Pentos');
+  addWaypoint(37, 58, 'Landmark', 'Braavos');
+  addWaypoint(43, 46, 'Landmark', 'Norvos');
+  addWaypoint(48, 40, 'Landmark', 'Qohor');
+  addWaypoint(41, 29, 'Landmark', 'Myr');
+  addWaypoint(36, 28, 'Landmark', 'Tyrosh');
+  addWaypoint(37, 15, 'Landmark', 'Lys');
+  addWaypoint(49, 18, 'Landmark', 'Volantis');
+  addWaypoint(85, 45, 'Landmark', 'Vaes Dothrak');
+  addWaypoint(88, 10, 'Landmark', 'Qarth');
+  addWaypoint(72, 27, 'Landmark', 'Mereen');
+  addWaypoint(57, 4,  'Landmark', 'Valyria');
+  addWaypoint(25, 43, 'Landmark', 'King\'s Landing');
+  addWaypoint(12, 44, 'Landmark', 'Lannisport');
+  addWaypoint(29, 19, 'Landmark', 'Sunspear');
+  addWaypoint(19, 77, 'Landmark', 'Winterfell');
 
   function addWaypoint(xPercentage, yPercentage, type, name) {
     waypoints.push(Waypoint([xPercentage,yPercentage], type, name));

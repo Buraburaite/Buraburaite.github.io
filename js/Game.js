@@ -32,10 +32,10 @@ function Game() {
     GAME.turn = 0;
     // promptForPlayers();
     players.push(Player('Durkee', 1, 'Baratheon'));
-    players.push(Player('Javi', 2, 'Targaeryn'));
+    players.push(Player('Javi', 2, 'Targaryen'));
 
-    addArmy(players[0], waypoints[0]);
-    addArmy(players[1], waypoints[3]);
+    addArmy(players[0], waypoints.find((wp) => wp.name === 'King\'s Landing'));
+    addArmy(players[1], waypoints.find((wp) => wp.name === 'Valyria'));
 
   }
   GAME.startGame = startGame;

@@ -72,9 +72,9 @@ function Army(commandingPlayer, startWaypoint) {
   mapEl.append(img);
 
   //Place army image
-  waypoint.banner = player.house.toLowerCase();
+  waypoint.banner = player.house;
   // img.style.left = waypoint.x;
-  img.style.left = +waypoint.x.replace('px','') + 50 + 'px';
+  img.style.left = +waypoint.x.replace('px','') + 20 + 'px';
   img.style.bottom = waypoint.y;
 
   function moveTo(newWaypoint) {
@@ -83,13 +83,13 @@ function Army(commandingPlayer, startWaypoint) {
     if (armies.length > 0) {
       waypoint.banner = 'neutral';
       newWaypoint.banner = 'conflict';
-      img.style.left = +newWaypoint.x.replace('px','') - 100 + 'px';
+      img.style.left = +newWaypoint.x.replace('px','') - 70 + 'px';
       img.style.bottom = newWaypoint.y;
     }
     else {
       waypoint.banner = 'neutral';
-      newWaypoint.banner = player.house.toLowerCase();
-      img.style.left = +newWaypoint.x.replace('px','') + 50 + 'px';
+      newWaypoint.banner = player.house;
+      img.style.left = +newWaypoint.x.replace('px','') + 20 + 'px';
       img.style.bottom = newWaypoint.y;
 
       waypoint.residingPlayer = player;
